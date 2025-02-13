@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+datasets = ['int10.txt', 'int50.txt', 'int100.txt', 'int1000.txt', 'int20k.txt', 'int500k.txt', 'intBig.txt']
+
+insertion_times = [45697460, 14760, 50730, 2640750, 70046570, 40440981810, 53382993510]
+selection_times = [32972930, 21460, 55790, 2006760, 110175390, 62467108340, 185284000000]
+shell_times = [45899570, 15670, 33300, 421850, 4614380, 69045920, 143982710]
+merge_times = [34723130, 30310, 59190, 116250, 901390, 21888850, 48596930]
+merge_insertion_times = [14040, 40370, 119650, 167700, 1078680, 31701560, 66356540]
+merge_bottomup_times = [302790, 26720, 49990, 156570, 1454160, 24082980, 42977450]
+quicksort_times = [42182860, 16220, 35960, 399210, 2299250, 38963100, 77065850]
+quicksort_median3_times = [11850, 18300, 30560, 185090, 3138690, 36916290, 68480320]
+quickdutch_times = [9490, 13910, 36800, 368270, 1930840, 46562430, 55716010]
+quick_insertion_times = [20280, 28880, 30920, 188510, 1715030, 38142760, 76103710]
+
+plt.figure(figsize=(14, 10))
+
+plt.plot(datasets, insertion_times, label='Insertion Sort')
+plt.plot(datasets, selection_times, label='Selection Sort')
+plt.plot(datasets, shell_times, label='Shell Sort')
+plt.plot(datasets, merge_times, label='Merge Sort')
+plt.plot(datasets, merge_insertion_times, label='Merge Insertion Sort')
+plt.plot(datasets, merge_bottomup_times, label='Merge Bottom-Up Sort')
+plt.plot(datasets, quicksort_times, label='Quick Sort')
+plt.plot(datasets, quicksort_median3_times, label='Quick Sort Median of 3')
+plt.plot(datasets, quickdutch_times, label='Quick Dutch Sort')
+plt.plot(datasets, quick_insertion_times, label='Quick Insertion Sort')
+
+plt.yscale('log')
+
+plt.xlabel('Datasets')
+plt.ylabel('Execution Time (ns)')
+plt.title('Sorting Algorithm Execution Times')
+plt.legend()
+plt.grid(True)
+
+plt.show()
