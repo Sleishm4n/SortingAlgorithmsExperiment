@@ -14,24 +14,28 @@ quicksort_median3_times = [11850, 18300, 30560, 185090, 3138690, 36916290, 68480
 quickdutch_times = [9490, 13910, 36800, 368270, 1930840, 46562430, 55716010]
 quick_insertion_times = [20280, 28880, 30920, 188510, 1715030, 38142760, 76103710]
 
+bar_width = 0.08
+index = np.arange(len(datasets))
+
 plt.figure(figsize=(14, 10))
 
-plt.plot(datasets, insertion_times, label='Insertion Sort')
-plt.plot(datasets, selection_times, label='Selection Sort')
-plt.plot(datasets, shell_times, label='Shell Sort')
-plt.plot(datasets, merge_times, label='Merge Sort')
-plt.plot(datasets, merge_insertion_times, label='Merge Insertion Sort')
-plt.plot(datasets, merge_bottomup_times, label='Merge Bottom-Up Sort')
-plt.plot(datasets, quicksort_times, label='Quick Sort')
-plt.plot(datasets, quicksort_median3_times, label='Quick Sort Median of 3')
-plt.plot(datasets, quickdutch_times, label='Quick Dutch Sort')
-plt.plot(datasets, quick_insertion_times, label='Quick Insertion Sort')
+plt.bar(index, insertion_times, bar_width, label='Insertion Sort')
+plt.bar(index + bar_width, selection_times, bar_width, label='Selection Sort')
+plt.bar(index + 2 * bar_width, shell_times, bar_width, label='Shell Sort')
+plt.bar(index + 3 * bar_width, merge_times, bar_width, label='Merge Sort')
+plt.bar(index + 4 * bar_width, merge_insertion_times, bar_width, label='Merge Insertion Sort')
+plt.bar(index + 5 * bar_width, merge_bottomup_times, bar_width, label='Merge Bottom-Up Sort')
+plt.bar(index + 6 * bar_width, quicksort_times, bar_width, label='Quick Sort')
+plt.bar(index + 7 * bar_width, quicksort_median3_times, bar_width, label='Quick Sort Median of 3')
+plt.bar(index + 8 * bar_width, quickdutch_times, bar_width, label='Quick Dutch Sort')
+plt.bar(index + 9 * bar_width, quick_insertion_times, bar_width, label='Quick Insertion Sort')
 
 plt.yscale('log')
 
 plt.xlabel('Datasets')
 plt.ylabel('Execution Time (ns)')
 plt.title('Sorting Algorithm Execution Times')
+plt.xticks(index + 5 * bar_width, datasets, rotation=45)
 plt.legend()
 plt.grid(True)
 

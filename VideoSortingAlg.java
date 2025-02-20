@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+// Video object defined with views and id
 class Video{
     int id;
     int views;
 
+    // Constructor
     public Video(int id, int views){
         this.id = id;
         this.views = views;
@@ -17,9 +19,12 @@ class Video{
 public class VideoSortingAlg {
     
     public List<Video> kMostViewed(List<Video> videos, int k){
-        
+
+        // New priorityQueue created and inistialised with a comparator to sort the video objects by views        
         PriorityQueue<Video> minHeap = new PriorityQueue<>(k, (Video v1, Video v2) -> Integer.compare(v1.views, v2.views));
 
+        // Loop through each video in the list and add if it meets requirements
+        // Add if the heap isnt full or if current video has more views then lowest in heap
         for (Video video : videos){
             if (minHeap.size() < k){
                 minHeap.offer(video);
@@ -32,6 +37,7 @@ public class VideoSortingAlg {
             }
         }
 
+        // Get the k most viewed videos from the heap and return in descending order
         List<Video> result = new ArrayList<>();
         while (!minHeap.isEmpty()){
             result.add(minHeap.poll());
@@ -41,6 +47,7 @@ public class VideoSortingAlg {
         return result;
     }
 
+    // Main method that creates a random amount of video objects with a random amount of views, then calls algortihm on the list
     public static void main(String[] args) {
         VideoSortingAlg service = new VideoSortingAlg();
         List<Video> videos = new ArrayList<>();
@@ -60,6 +67,7 @@ public class VideoSortingAlg {
         
         List<Video> topKVideos = service.kMostViewed(videos, k);
         
+        // Display the most viewed videos
         for (Video video : topKVideos) {
             System.out.println("Video ID: " + video.id + ", Views: " + video.views);
         }
